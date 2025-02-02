@@ -4,8 +4,11 @@ import { userValidationSchema } from "../utils/userValidation";
 import InputMask from "react-input-mask";
 import api from "../service/api";
 import { useEffect } from "react";
+import { toast } from 'react-toastify';
 
 function Form({ user, setUser }) {
+
+
   const {
     register,
     handleSubmit,
@@ -24,26 +27,25 @@ function Form({ user, setUser }) {
     const match = cpf.match(/^(\d{3}\.\d{3}\.\d{3})-(\d{2})$/);
   
     if (match) {
+
       const parte1 = match[1].replace(/\D/g, ""); 
       const parte2 = match[2];
   
       // Transformando em um array para somar
       const numeros = parte1.split("").map(Number); 
   
-
       let somaDig1 = 0
       let somaDig2 = 0
       let pesoDig1 = 10
       let pesoDig2 = 11      
 
       for (let i = 0; i < numeros.length; i++) {
-        
         somaDig1 += numeros[i] * (pesoDig1); 
         pesoDig1--
       }
 
       const restoDig1 = somaDig1%11
-      let digito1= 11 - restoDig1
+      let digito1 = 11 - restoDig1
 
       for (let i = 0; i < numeros.length; i++) {
         
@@ -67,10 +69,11 @@ function Form({ user, setUser }) {
 
       if(parte2===`${digito1}${digito2}`){
         return usercpf
-      }
+      } else return false
 
     } else {
       console.log("Formato inválido!");
+      return false
     }
   }
 
@@ -78,11 +81,14 @@ function Form({ user, setUser }) {
   const onSubmit = async (data) => {
     const { nome, email, dataNasc, cpf, cep } = data;
 
-    const response = await api.get(`/${cep}/json/`);
+    
+      const response = await api.get(`/${cep}/json/`);
 
-    console.log;
-
-    console.log(response);
+      if(validateCPF(cpf)===false){
+        console.log("CPF inválido")
+        toast.error("CPF inválido")
+        return false
+      }
 
     const { logradouro, bairro, localidade, uf } = response.data;
 
@@ -101,6 +107,16 @@ function Form({ user, setUser }) {
 
     setUser((previousUsers) => [...previousUsers, newUser]);
 
+    toast.success('Usuário cadastrado com sucesso!', {
+      position: "top-right",
+      autoClose: 3500,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "colored",
+      });
+
     reset();
   };
 
@@ -108,7 +124,7 @@ function Form({ user, setUser }) {
   return (
     <form
       action=""
-      className="flex flex-col gap-4 bg-neutral-600 bg-opacity-25 p-5 rounded-md w-11/12"
+      className="flex flex-col gap-4 bg-neutral-600 bg-opacity-25 p-5 rounded-md w-11/12 lg:w-4/12"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="flex flex-col gap-2">
@@ -120,6 +136,7 @@ function Form({ user, setUser }) {
           type="text"
           className="rounded-md p-2 text-xl"
           {...register("nome")}
+          placeholder="Digite seu nome"
         />
         <div className="text-red-950">{errors.nome?.message}</div>
       </div>
@@ -135,6 +152,7 @@ function Form({ user, setUser }) {
           mask="999.999.999-99"
           maskChar=""
           {...register("cpf")}
+          placeholder="Digite seu CEP (Ex.: 000.000.000-00)"
         />
         <div className="text-red-950">{errors.cpf?.message}</div>
       </div>
@@ -146,7 +164,7 @@ function Form({ user, setUser }) {
         <input
           id="dataNasc"
           type="date"
-          className="rounded-md p-2 text-xl"
+          className="rounded-md p-2 text-xl text-neutral-400"
           {...register("dataNasc")}
         />
         <div className="text-red-950">{errors.dataNasc?.message}</div>
@@ -161,6 +179,7 @@ function Form({ user, setUser }) {
           type="email"
           className="rounded-md p-2 text-xl"
           {...register("email")}
+          placeholder="Digite seu email"
         />
         <div className="text-red-950">{errors.email?.message}</div>
       </div>
@@ -176,6 +195,7 @@ function Form({ user, setUser }) {
           mask="99999-999"
           maskChar=""
           {...register("cep")}
+          placeholder="Digite seu CEP (Ex.: 00000-000)"
         />
         <div className="text-red-950">{errors.cep?.message}</div>
       </div>

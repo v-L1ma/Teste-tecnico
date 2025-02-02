@@ -5,29 +5,22 @@ import Table from './components/Table'
 
 function App() {
 
-  const [user, setUser] = useState([
-    {
-      id: 1,
-      nome: "Vinicius",
-      email: "Viniciuslima957@hotmail.com",
-      dataNasc: "2004-04-06",
-      cpf: "479615338-18",
-      cep:"11320-270",
-      logradouro:"Rua joao ribeiro 58",
-      bairro:"Itararé",
-      cidade:"São vicente",
-      estado:"SP"
-    },
-  ])
+  const [user, setUser] = useState([])
 
   return (
-    <main className='bg-neutral-900 flex flex-col h-screen items-center'>
+    <main className='bg-neutral-900 flex flex-col items-center pb-24'>
       
-        <h1 className='text-white'>Formulario de cadastro</h1>
+        <h1 className='text-white m-10 font-extrabold text-3xl '>Formulário de cadastro</h1>
+
         <Form user={user} setUser={setUser}/>
 
-        <Table user={user}/>
-
+        <h1 className='text-white m-10 font-extrabold text-3xl '>
+          Lista de usuários cadastrados:
+        </h1>
+        
+        <div className='overflow-x-scroll lg:overflow-auto mt-10 w-11/12 rounded-lg lg:w-8/12'>
+          <Table user={user}/>
+        </div>
    
     </main>
   )

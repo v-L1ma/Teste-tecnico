@@ -24,18 +24,18 @@ function Table({user}){
 
     return(
 
-        <table className="bg-white mt-10">
+        <table className="bg-neutral-600 bg-opacity-25 p-5 rounded-md w-full">
             
                 <thead>
                     <tr>
-                        <th className="border-4 text-xl">Nome</th>
-                        <th className="border-4 text-xl">E-mail</th>
-                        <th className="border-4 text-xl">Idade </th>
-                        <th className="border-4 text-xl">CPF</th>
-                        <th className="border-4 text-xl">Logradouro</th>
-                        <th className="border-4 text-xl">Bairro</th>
-                        <th className="border-4 text-xl">Cidade</th>
-                        <th className="border-4 text-xl">Estado</th>
+                        <th className="border-2 border-white border-opacity-30 text-xl text-white">Nome</th>
+                        <th className="border-2 border-white border-opacity-30 text-xl text-white">E-mail</th>
+                        <th className="border-2 border-white border-opacity-30 text-xl text-white">Idade </th>
+                        <th className="border-2 border-white border-opacity-30 text-xl text-white">CPF</th>
+                        <th className="border-2 border-white border-opacity-30 text-xl text-white">Logradouro</th>
+                        <th className="border-2 border-white border-opacity-30 text-xl text-white">Bairro</th>
+                        <th className="border-2 border-white border-opacity-30 text-xl text-white">Cidade</th>
+                        <th className="border-2 border-white border-opacity-30 text-xl text-white">Estado</th>
                     </tr>
                 </thead>
             
@@ -44,28 +44,28 @@ function Table({user}){
                         {
                             user.map((user)=>(
                                 <tr key={user.id}>
-                                    <td className="text-center text-xl">
+                                    <td className="border-2 border-white border-opacity-30 text-xl text-white text-center">
                                     {user.nome}
                                     </td>
-                                    <td className="text-center text-xl">
+                                    <td className="border-2 border-white border-opacity-30 text-xl text-white text-center">
                                     {user.email}
                                     </td>
-                                    <td className="text-center text-xl">
+                                    <td className="border-2 border-white border-opacity-30 text-xl text-white text-center">
                                     {calculateAge(user.dataNasc)}
                                     </td>
-                                    <td className="text-center text-xl">
+                                    <td className="border-2 border-white border-opacity-30 text-xl text-white text-center">
                                     {user.cpf}
                                     </td>
-                                    <td className="text-center text-xl">
+                                    <td className="border-2 border-white border-opacity-30 text-xl text-white text-center">
                                     {user.cep}
                                     </td>
-                                    <td className="text-center text-xl">
+                                    <td className="border-2 border-white border-opacity-30 text-xl text-white text-center">
                                     {user.bairro}
                                     </td>
-                                    <td className="text-center text-xl">
+                                    <td className="border-2 border-white border-opacity-30 text-xl text-white text-center">
                                     {user.cidade}
                                     </td>
-                                    <td className="text-center text-xl">
+                                    <td className="border-2 border-white border-opacity-30 text-xl text-white text-center">
                                     {user.estado}
                                     </td>
                                 </tr>
