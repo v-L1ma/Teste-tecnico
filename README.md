@@ -3,7 +3,7 @@
 # Site no ar: 
 https://teste-tecnico-cadastro-usuarios.netlify.app
 
-#Sobre:
+# Sobre:
 
 Fiz usando React pois eu não tenho conhecimento sobre Angular ainda, mas estou disposto a aprender!
 Usei a biblioteca Axios para fazer a consulta na API ViaCEP, usei o React Hook form para validar o formulario e o
