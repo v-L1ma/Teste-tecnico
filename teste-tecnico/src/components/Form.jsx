@@ -164,7 +164,7 @@ function Form({ user, setUser }) {
           mask="999.999.999-99"
           maskChar=""
           {...register("cpf")}
-          placeholder="Digite seu CEP (Ex.: 000.000.000-00)"
+          placeholder="Digite seu CPF (Ex.: 000.000.000-00)"
         />
         <div className="text-red-950">{errors.cpf?.message}</div>
       </div>
