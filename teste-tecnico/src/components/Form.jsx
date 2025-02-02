@@ -174,11 +174,11 @@ function Form({ user, setUser }) {
         <label htmlFor="dataNasc" className="text-white font-bold text-2xl">
           Data de nascimento
         </label>
-        <div className="flex">
+        <div className="flex w-full">
           <input
             id="dataNasc"
             type="date"
-            className="rounded-l-md p-2 text-xl text-neutral-400 w-full"
+            className="rounded-l-md rounded-r-none lg:rounded-r-md p-2 text-xl text-neutral-400 w-full"
             {...register("dataNasc")}
           />
           <label className="lg:hidden flex bg-white text-2xl items-center justify-center rounded-r-md pr-2" htmlFor="dataNasc"><IoCalendarClearOutline/></label>
