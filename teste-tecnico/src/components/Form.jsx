@@ -5,6 +5,7 @@ import InputMask from "react-input-mask";
 import api from "../service/api";
 import { useEffect } from "react";
 import { toast } from 'react-toastify';
+import { IoCalendarClearOutline } from "react-icons/io5";
 
 function Form({ user, setUser }) {
 
@@ -173,12 +174,15 @@ function Form({ user, setUser }) {
         <label htmlFor="dataNasc" className="text-white font-bold text-2xl">
           Data de nascimento
         </label>
-        <input
-          id="dataNasc"
-          type="date"
-          className="rounded-md p-2 text-xl text-neutral-400"
-          {...register("dataNasc")}
-        />
+        <div className="flex">
+          <input
+            id="dataNasc"
+            type="date"
+            className="rounded-l-md p-2 text-xl text-neutral-400 w-full"
+            {...register("dataNasc")}
+          />
+          <label className="lg:hidden flex bg-white text-2xl items-center justify-center rounded-r-md pr-2" htmlFor="dataNasc"><IoCalendarClearOutline/></label>
+        </div>
         <div className="text-red-950">{errors.dataNasc?.message}</div>
       </div>
 
