@@ -32,6 +32,7 @@ function Table({user}){
                         <th className="border-2 border-white border-opacity-30 text-xl text-white">E-mail</th>
                         <th className="border-2 border-white border-opacity-30 text-xl text-white">Idade </th>
                         <th className="border-2 border-white border-opacity-30 text-xl text-white">CPF</th>
+                        <th className="border-2 border-white border-opacity-30 text-xl text-white">CEP</th>
                         <th className="border-2 border-white border-opacity-30 text-xl text-white">Logradouro</th>
                         <th className="border-2 border-white border-opacity-30 text-xl text-white">Bairro</th>
                         <th className="border-2 border-white border-opacity-30 text-xl text-white">Cidade</th>
@@ -58,6 +59,9 @@ function Table({user}){
                                     </td>
                                     <td className="border-2 border-white border-opacity-30 text-xl text-white text-center">
                                     {user.cep}
+                                    </td>
+                                    <td className="border-2 border-white border-opacity-30 text-xl text-white text-center">
+                                    {user.logradouro}
                                     </td>
                                     <td className="border-2 border-white border-opacity-30 text-xl text-white text-center">
                                     {user.bairro}

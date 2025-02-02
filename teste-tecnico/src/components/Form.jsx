@@ -8,7 +8,6 @@ import { toast } from 'react-toastify';
 
 function Form({ user, setUser }) {
 
-
   const {
     register,
     handleSubmit,
@@ -18,8 +17,7 @@ function Form({ user, setUser }) {
     resolver: yupResolver(userValidationSchema),
   });
 
-  function validateCPF(cpf) {
-    
+  function validateCPF(cpf) {    
 
     const usercpf = cpf
 
@@ -86,7 +84,14 @@ function Form({ user, setUser }) {
 
       if(validateCPF(cpf)===false){
         console.log("CPF inválido")
-        toast.error("CPF inválido")
+        toast.error("CPF inválido",{
+          position: "top-right",
+          autoClose: 3500,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored",})
         return false
       }
 
@@ -106,6 +111,14 @@ function Form({ user, setUser }) {
     };
 
     setUser((previousUsers) => [...previousUsers, newUser]);
+    
+    reset({
+      nome: "",
+      email: "",
+      dataNasc: "",
+      cpf: "",
+      cep: "",
+    });
 
     toast.success('Usuário cadastrado com sucesso!', {
       position: "top-right",
@@ -116,8 +129,6 @@ function Form({ user, setUser }) {
       draggable: true,
       theme: "colored",
       });
-
-    reset();
   };
 
 
@@ -127,6 +138,7 @@ function Form({ user, setUser }) {
       className="flex flex-col gap-4 bg-neutral-600 bg-opacity-25 p-5 rounded-md w-11/12 lg:w-4/12"
       onSubmit={handleSubmit(onSubmit)}
     >
+
       <div className="flex flex-col gap-2">
         <label htmlFor="nome" className="text-white font-bold text-2xl">
           Nome
